@@ -7,7 +7,7 @@ export default function NavBar() {
 		<Navbar shouldHideOnScroll>
 			<NavbarBrand>
 
-				<p className="font-bold text-inherit">HABERTO</p>
+				<Link className="font-bold text-inherit" href='/'>HABERTO</Link>
 			</NavbarBrand>
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<NavbarItem>
