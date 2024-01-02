@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { postid: string } }) {
 				className="w-full object-cover aspect-video"
 			/>
 			<h1>{newsData.articleTitle}</h1>
-			<p dangerouslySetInnerHTML={{ __html: newsData.articleContent }} />
+			<div dangerouslySetInnerHTML={{ __html: newsData.articleContent.replace(/\\/g, '').replace(/^"(.*)"$/, '$1') }} />
 		</div>
 	);
 }
