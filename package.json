@@ -11,19 +11,27 @@
   "dependencies": {
     "@egjs/react-flicking": "^4.11.2",
     "@nextui-org/react": "^2.2.9",
+    "@slate-serializers/html": "^2.1.6",
     "@trendyol-js/react-carousel": "^3.0.2",
     "axios": "^1.6.2",
+    "class-variance-authority": "^0.7.0",
     "framer-motion": "^10.16.16",
+    "htmlparser2": "^9.0.0",
     "is-hotkey": "^0.2.0",
     "lexical": "^0.12.5",
+    "lucide-react": "^0.303.0",
     "next": "14.0.4",
+    "parse5": "^7.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-infinite-scroll-component": "^6.1.0",
     "slate": "^0.101.5",
     "slate-history": "^0.100.0",
-    "slate-react": "^0.101.5"
+    "slate-hyperscript": "^0.100.0",
+    "slate-react": "^0.101.5",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.4.1",
