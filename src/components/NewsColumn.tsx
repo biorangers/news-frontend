@@ -1,6 +1,6 @@
-import { Card, CardHeader, Divider, CardBody, CardFooter, Image, Link } from "@nextui-org/react";
+import { Card, CardHeader, Divider, CardBody, CardFooter, Image, Link, Chip } from "@nextui-org/react";
 
-export default function NewsColumn() {
+export default function NewsColumn({ news }: any) {
 	return <Card className="">
 		<CardHeader className="flex gap-3 items-center justify-center">
 			<p className="text-lg font-bold">En Çok Okunanlar</p>
@@ -8,25 +8,30 @@ export default function NewsColumn() {
 		<Divider />
 		<CardBody>
 			<ul className="flex flex-col gap-4 ">
-				{
-					[1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, i) => {
+				{news?.length > 0 &&
+					news.map((a: any, i: number) => {
 						return <div key={i}>
-							<Card >
-								<CardBody className="flex flex-row gap-4">
+							<Link
+								href={`/haber/${a.articleID}`}>
+								<Card className="flex flex-row gap-1">
+									<CardHeader className="h-[100px] min-w-[100px] w-[100px]">
+										<Image
+											width="100%"
+											alt="Haber"
+											className="object-cover h-[100px] min-w-[100px] w-[100px] col-span-4 m-auto"
+											src={`/api/images/${a.articleImageURL}`}
+										/>
+									</CardHeader>
+									<CardBody className="  flex-row col-span-4 ">
 
-									<Image
-										shadow="sm"
-										radius="lg"
-										width="100%"
-										alt="Haber"
-										className="w-full object-cover h-[100px] aspect-square"
-										src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-									/>
 
-									<li className="text-default-700 text-xl font-bold">Haber {i}</li>
-								</CardBody>
 
-							</Card>
+										<p className="text-default-700 text-md font-bold col-span-3">{a.articleTitle}</p>
+										<Chip className="capitalize" color="success" size="sm" variant="flat">{a.articleView}</Chip>
+									</CardBody>
+
+								</Card>
+							</Link>
 						</div>
 					})
 				}
@@ -37,16 +42,3 @@ export default function NewsColumn() {
 	</Card>
 
 }
-
-/*
-<h1 className="text-3xl font-bold text-center">Haberler</h1>
-				<ul className="flex flex-col gap-4 ">
-
-					<li className="text-gray-500">1</li>
-					<li className="text-gray-500">2</li>
-					<li className="text-gray-500">3</li>
-					<li className="text-gray-500">4</li>
-					<li className="text-gray-500">5</li>
-
-				</ul>
-				 */
