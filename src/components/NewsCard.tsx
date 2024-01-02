@@ -1,31 +1,34 @@
-import { Card, CardBody, CardFooter, Chip, Button, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Chip, Button, Image, CardHeader } from "@nextui-org/react";
 import Link from "next/link";
 import { FaRegEye } from "react-icons/fa";
-
+import Router from "next/router";
 export default function NewsCard({ news, key }: NewsCardProps) {
-	return <Card shadow="lg" key={key} >
-		<CardBody className="overflow-visible p-2 ">
+	return <Link href={`/haber/${news.articleID}`}>
+		<Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+			<CardHeader className="absolute z-10 top-1 flex-col items-start">
+				<h4 className="text-white font-medium text-2xl">{news.articleTitle}</h4>
+			</CardHeader>
 			<Image
-				shadow="sm"
-				radius="lg"
-				width="100%"
-				alt={news.articleTitle}
-				className="w-full object-cover h-[200px]"
-				src={news.articleImageURL}
+				removeWrapper
+				alt="Card example background"//make image darker 
+				className="z-0 w-full h-full scale-110 -translate-y-6 object-cover bg-black/30 filter brightness-[0.4]"
+				src={`/api/images/${news.articleImageURL}`}
 			/>
-			<b>{news.articleTitle}</b>
-		</CardBody>
-		<CardFooter className="text-small justify-between gap-4">
-			<div className="justify-start">
-				<Chip color="warning" variant="dot">{news.categoryName}</Chip>
-			</div>
-			<Chip endContent={<FaRegEye size={18} class="mr-2" />} variant="bordered" color="secondary"	>
-				{news.articleView}
-			</Chip>
-			<Link href={`/haber/${news.articleID}`}>
-				<Button>Habere git</Button>
-			</Link>
-		</CardFooter>
+			<CardFooter className="absolute bg-black/30 bottom-0 z-10 justify-between">
 
-	</Card>
+
+				<Chip color="warning" variant="dot">{news.categoryName}</Chip>
+
+
+				<Chip endContent={<FaRegEye size={18} class="mr-2" />} variant="bordered" color="secondary"	>
+					{news.articleView}
+				</Chip>
+
+
+			</CardFooter>
+
+		</Card>
+
+	</Link >
+
 }
