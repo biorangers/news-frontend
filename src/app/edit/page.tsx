@@ -251,6 +251,8 @@ const MarkButton = ({ format, icon }: any) => {
 		</Button>
 	)
 }
+const document = new DOMParser().parseFromString(html, 'text/html')
+deserialize(document.body)
 
 const initialValue: Descendant[] = [
 	{
