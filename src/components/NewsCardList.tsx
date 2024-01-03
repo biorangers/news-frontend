@@ -14,13 +14,13 @@ import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NewsCard from "./NewsCard";
 
-export default function NewsCardList() {
+export default function NewsCardList({ url, categoryId }: any) {
 	const [news, setNews] = useState([]);
 	const [page, setPage] = useState(1);
 	const fetchMoreNews = async () => {
 		// Yeni haberleri çekmek için bir API isteği yapın
 		try {
-			const response = await fetch(`/api/News/GetAllNews/${page}`, {
+			const response = await fetch(`${url}${page}${categoryId ? `, ${categoryId}` : ''}`, {
 				next: {
 					revalidate: 60,
 					tags: ["news"],
