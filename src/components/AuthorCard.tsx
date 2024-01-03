@@ -3,10 +3,10 @@ import { Card, Image, CardBody } from "@nextui-org/react";
 
 const AuthorCard = ({ author }: any) => {
 	return (
-		<Card className="flex flex-row justify-between mt-2" isBlurred>
+		<Card className="flex flex-row justify-between mt-2 shadow-sm shadow-neutral-300" isBlurred>
 			<CardBody className="flex flex-row gap-2">
 				<Image
-					src={`/api/images/img_638398758701267350_1af6d770-c02e-42c7-b087-d1d4b38729fa.webp`}
+					src={author.userPPUrl}
 					alt={author.userName}
 					width="100%"
 					height="100%"

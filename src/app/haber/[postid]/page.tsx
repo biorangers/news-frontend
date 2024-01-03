@@ -8,8 +8,7 @@ export default async function Page({ params }: { params: { postid: string } }) {
 
 	const res = await fetch(`http://localhost:5074/api/News/GetNewsById/${params.postid}`);
 	const newsData = (await res.json())[0]
-	const allAuthors = await (await axios.get('http://localhost:5074/api/User/GetAllAuthors')).data;
-	const author = allAuthors.find((a: any) => a.authorId == newsData.authorID)
+	const author = await (await axios.get(`http://localhost:5074//api/User/GetAuthorById/${newsData.authorID}`)).data[0];
 	return (
 		<div className="container p-2 mt-2 prose max-w-[900px] prose-stone dark:prose-invert text-neutral-300 flex flex-col justify-center mx-auto">
 			<Image
