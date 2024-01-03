@@ -6,7 +6,7 @@ export default function NewsColumn({ news }: any) {
 			<p className="text-lg font-bold">En Çok Okunanlar</p>
 		</CardHeader>
 		<Divider />
-		<CardBody>
+		<CardBody className="p-2">
 			<ul className="flex flex-col gap-4 ">
 				{news?.length > 0 &&
 					news.map((a: any, i: number) => {
@@ -14,7 +14,7 @@ export default function NewsColumn({ news }: any) {
 							<Link
 								href={`/haber/${a.articleID}`}>
 								<Card className="flex flex-row gap-1">
-									<CardHeader className="h-[100px] min-w-[100px] w-[100px]">
+									<CardHeader className="h-[100px] min-w-[100px] w-[100px] my-auto mr-1">
 										<Image
 											width="100%"
 											alt="Haber"
