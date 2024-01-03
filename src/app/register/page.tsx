@@ -1,7 +1,6 @@
 "use client"
 
 import React, { FormEvent, useState } from 'react';
-import crypto from 'crypto';
 import axios from 'axios';
 import { Button, Card, Input, Link, Select, SelectItem } from '@nextui-org/react';
 
@@ -9,7 +8,7 @@ const Login = () => {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const data = new FormData(e.target as HTMLFormElement);
-		const allData = Object.fromEntries(data.entries()) as RegisterFormEntry
+		const allData = Object.fromEntries(data.entries()) as unknown as RegisterFormEntry
 		const { name, surname, email, roleId } = allData
 
 		const res = await axios.post('/api/UserOperation/RegisterUser', {
@@ -100,7 +99,6 @@ const Login = () => {
 						variant='shadow'
 						className="w-full py-2"
 						color='success'
-						onClick={handleSubmit}
 					>
 						Kaydol
 					</Button>
