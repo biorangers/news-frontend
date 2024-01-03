@@ -28,13 +28,13 @@ export default function RootLayout({
         </main>
         <div
           aria-hidden="true"
-          className="fixed hidden dark:md:block dark:opacity-70 scale-110 -translate-y-6 blur-lg -bottom-[40%] -left-[20%] z-0"
+          className="fixed hidden dark:md:block dark:opacity-70 scale-110 -translate-y-6 blur-lg -bottom-[40%] -left-[20%] z-0 pointer-events-none"
         >
           <Image removeWrapper alt="docs left background" src="/gradients/docs-left.png" />
         </div>
         <div
           aria-hidden="true"
-          className="fixed hidden dark:md:block dark:opacity-70 scale-110 -translate-y-6 blur-lg -top-[80%] -right-[60%] 2xl:-top-[60%] 2xl:-right-[45%] z-0 rotate-12"
+          className="fixed hidden dark:md:block dark:opacity-70 scale-110 -translate-y-6 blur-lg -top-[80%] -right-[60%] 2xl:-top-[60%] 2xl:-right-[45%] z-0 rotate-12 pointer-events-none"
         >
           <Image removeWrapper alt="docs right background" src="/gradients/docs-right.png" />
         </div>
