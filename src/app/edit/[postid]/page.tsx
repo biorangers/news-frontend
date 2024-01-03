@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import NewsEditor from "@/components/edit/Editor";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import FileInput from "@/components/edit/FileInput";
 
 // eslint-disable-next-line @next/next/no-async-client-component
 export default function Page({ params }: { params: { postid: string } }) {
@@ -13,6 +14,7 @@ export default function Page({ params }: { params: { postid: string } }) {
 	const [author, setAuthor] = useState({});
 	const [categories, setCategories] = useState([] as CategorySelectItem[]);
 	const [updating, setUpdating] = useState(false);
+	const [uploadedFile, setUploadedFile] = useState("");
 	const fetchData = async () => {
 		try {
 			const newsData: NewsData[] = await (await fetch(`/api/News/GetNewsById/${params.postid}`)).json();
@@ -24,6 +26,7 @@ export default function Page({ params }: { params: { postid: string } }) {
 				acc.push({ label: cur.categoryName, value: cur.id.toString() });
 				return acc;
 			}, []));
+			setUploadedFile(newsData[0].articleImageURL);
 		} catch (error) {
 			console.error("Haberleri getirirken hata oluştu:", error);
 		}
@@ -31,14 +34,14 @@ export default function Page({ params }: { params: { postid: string } }) {
 	const updateNews = async () => {
 		setUpdating(true);
 		try {
-			const res = await axios.put(`/api/NewsOperation/${news.articleID}`,
+			const res = await axios.put(`/api/NewsOperation/UpdateArticle/${news.articleID}`,
 				{
 					"articleID": 0,
 					"categoryID": categories.find((c: any) => c.label === news.categoryName)?.value || 1,
 					"permissionID": 1,
 					"articleTitle": news.articleTitle,
 					"articleContent": news.articleContent,
-					"ImageURL": news.articleImageURL,
+					"ImageURL": uploadedFile,
 				}
 			);
 			console.log(res);
@@ -57,8 +60,8 @@ export default function Page({ params }: { params: { postid: string } }) {
 
 
 	return (
-		<div className='flex justify-center flex-col items-center mt-20 gap-2'>
-			{news.articleContent && <div className="gap-2 flex flex-col items-center">
+		<div className='flex justify-center flex-col items-center mt-20 gap-2 relative'>
+			{news?.articleContent && <div className="gap-2 flex flex-col items-center">
 				<div className="gap-2 grid grid-flow-row grid-cols-3 max-w-[900px]">
 					<div className="col-span-2 flex flex-col gap-2">
 						<Input
@@ -68,13 +71,7 @@ export default function Page({ params }: { params: { postid: string } }) {
 							isInvalid={news.articleTitle?.length < 5}
 							onChange={(e) => setNews({ ...news, articleTitle: e.target.value })}
 						/>
-						<Input
-							label="Resim URL" placeholder="Resim URL giriniz" defaultValue={news.articleImageURL}
-							variant="bordered"
-							className="max-w-lg"
-							isInvalid={news.articleImageURL?.length < 5}
-							onChange={(e) => setNews({ ...news, articleImageURL: e.target.value })}
-						/>
+
 						<Select
 							items={categories}
 							label="Kategori"
@@ -85,9 +82,10 @@ export default function Page({ params }: { params: { postid: string } }) {
 						>
 							{categories.map((c: any) => <SelectItem key={c.value}>{c.label}</SelectItem>)}
 						</Select>
+						<FileInput uploadedFile={uploadedFile} setUploadedFile={setUploadedFile} />
 					</div>
 					<Image
-						src={news.articleImageURL}
+						src={`/api/images/${uploadedFile}` || `/api/images/${news.articleImageURL}`}
 						alt="Resim"
 						width={400}
 						height={400}
