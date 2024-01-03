@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: { postid: string } }) {
 	return (
 		<div className="container p-2 mt-2 prose max-w-[900px] prose-stone dark:prose-invert text-neutral-300 flex flex-col justify-center mx-auto">
 			<Image
-				src={newsData.articleImageURL}
+				src={`/api/images/${newsData.articleImageURL}`}
 				alt={newsData.articleTitle}
 				width="100%"
 				height="100%"
