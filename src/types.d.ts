@@ -28,7 +28,7 @@ type RegisterFormEntry = {
 	name: string;
 	surname: string;
 	email: string;
-	roleId: string | number;
+	roleId: string;
 };
 
 type TopTenNews = {
