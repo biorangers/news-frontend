@@ -75,7 +75,7 @@ export default function Page({ params }: { params: { postid: string } }) {
 						<Select
 							items={categories}
 							label="Kategori"
-							placeholder="Katagori seçiniz"
+							placeholder="Kategori seçiniz"
 							defaultSelectedKeys={[categories.find((c: any) => c.label === news.categoryName)?.value || "all"]}
 							className="max-w-lg"
 							variant="bordered"
