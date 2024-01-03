@@ -19,6 +19,8 @@ const config: Config = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    nextui()],
+    nextui({
+      defaultTheme: "dark"
+    })],
 }
 export default config
