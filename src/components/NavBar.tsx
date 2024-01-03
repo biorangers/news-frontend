@@ -5,6 +5,7 @@ import { SearchIcon } from "@/components/icons/SearchIcon";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
+import SearchBar from "./SearchBar";
 
 function NavBar() {
 	const [categories, setCategories] = useState([]);
@@ -49,19 +50,7 @@ function NavBar() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem>
-					<Input
-						classNames={{
-							base: "max-w-lg sm:max-w-[10rem] h-10",
-							mainWrapper: "h-full",
-							input: "text-small",
-							inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-						}}
-						placeholder="Type to search..."
-						size="sm"
-						startContent={<SearchIcon size={18} />}
-						type="search"
-						className="max-w-lg"
-					/>
+					<SearchBar />
 				</NavbarItem>
 				<NavbarItem>
 					<Button as={Link} color="primary" href="/register" variant="flat">
