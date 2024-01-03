@@ -28,7 +28,7 @@ function NavBar() {
 		<Navbar shouldHideOnScroll>
 			<NavbarBrand>
 
-				<Link className="font-bold text-inherit" href='/'>HABERTO</Link>
+				<Link className="font-bold text-inherit text-xl" href='/'>HABERTO</Link>
 			</NavbarBrand>
 			<NavbarContent className="hidden sm:flex gap-4" justify="center">
 				<NavbarItem>
@@ -48,12 +48,12 @@ function NavBar() {
 					</Dropdown>
 				</NavbarItem>
 			</NavbarContent>
-			<NavbarContent justify="end">
-				<NavbarItem>
+			<NavbarContent className="flex flex-row" justify="end">
+				<NavbarItem className="w-full">
 					<SearchBar />
 				</NavbarItem>
 				<NavbarItem>
-					<Button as={Link} color="primary" href="/register" variant="flat">
+					<Button as={Link} color="success" href="/register" variant="bordered">
 						Bizimle Çalış
 					</Button>
 				</NavbarItem>
