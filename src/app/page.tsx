@@ -5,7 +5,9 @@ import axios from 'axios';
 
 
 export default async function Home() {
-  const newsColumnData = await (await axios.get('http://localhost:5074/api/News/GetTopArticles')).data;
+  const newsColumnData = await (await fetch('http://localhost:5074/api/News/GetTopArticles', {
+    next: { revalidate: 5 },
+  })).json();
 
   return (
     <main className="container min-h-screen flex-row justify-between m-auto pt-24 grid grid-cols-8 gap-4">
