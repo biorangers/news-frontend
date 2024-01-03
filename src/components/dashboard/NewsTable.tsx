@@ -70,7 +70,7 @@ const users = [
 ];
 
 export default function NewsTable() {
-	const renderCell = React.useCallback((user, columnKey) => {
+	const renderCell = React.useCallback((user: any, columnKey: any) => {
 		const cellValue = user[columnKey];
 
 		switch (columnKey) {
@@ -93,7 +93,7 @@ export default function NewsTable() {
 				);
 			case "status":
 				return (
-					<Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
+					<Chip className="capitalize" color='primary' size="sm" variant="flat">
 						{cellValue}
 					</Chip>
 				);
