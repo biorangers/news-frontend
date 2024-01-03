@@ -30,35 +30,27 @@ const Login = () => {
 
 	return (
 		<div className="flex justify-center items-center h-svh">
-			<Card className=" p-8 rounded-lg shadow-md w-[400px] h-[500px]">
-				<h1 className="text-2xl font-semibold mb-4">Giriş Yap</h1>
+			<Card className=" p-8 rounded-lg shadow-md w-[400px]">
+				<h1 className="text-3xl font-semibold">Giriş Yap</h1>
 				<form className="space-y-4 mt-10" onSubmit={handleSubmit}>
-					<div>
+					<div className='flex flex-col gap-4'>
 						<Input
 							type="email"
-							id="email"
-							placeholder="E-posta adresinizi girin"
+							name="email"
 							className="w-full"
 							variant='bordered'
-							value={email}
-							label='E-posta Adresi'
-							labelPlacement="outside"
-							onChange={(e) => setEmail(e.target.value)}
+							size='lg'
+							label='E-posta'
 						/>
-					</div>
-					<div>
-						<label htmlFor="password" className="block mb-1">
-							Şifre
-						</label>
 						<Input
 							type="password"
-							id="password"
-							placeholder="Şifrenizi girin"
+							name="password"
 							className="w-full"
 							variant='bordered'
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							size='lg'
+							label='Şifre'
 						/>
+
 					</div>
 					<Button
 						type="submit"

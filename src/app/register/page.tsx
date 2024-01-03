@@ -40,8 +40,8 @@ const Login = () => {
 
 	return (
 		<div className="flex justify-center items-center h-svh">
-			<Card className=" p-8 rounded-lg shadow-md w-[400px] min-h-[500px]">
-				<h1 className="text-2xl font-semibold mb-4">Kaydol</h1>
+			<Card className=" p-8 rounded-lg shadow-md w-[400px]">
+				<h1 className="text-3xl font-semibold">Kaydol</h1>
 				<form className="space-y-4 mt-10" onSubmit={handleSubmit}>
 					<div className='flex flex-col gap-3'>
 						<Input
@@ -70,13 +70,13 @@ const Login = () => {
 						/>
 						<Select
 							name="roleId"
-							className="w-full"
+							className="w-full dark"
 							variant='bordered'
 							size='lg'
 							label='Rol'
 						>
-							<SelectItem value="Yazar" key={1} />
-							<SelectItem value="Editör" key={2} />
+							<SelectItem key={1}>Yazar</SelectItem>
+							<SelectItem key={2}>Editör</SelectItem>
 						</Select>
 						{
 							/*
@@ -99,13 +99,14 @@ const Login = () => {
 						type="submit"
 						variant='shadow'
 						className="w-full py-2"
-						color='primary'
+						color='success'
+						onClick={handleSubmit}
 					>
-						Giriş Yap
+						Kaydol
 					</Button>
 
 				</form>
-				<div className='flex flex-row justify-between'>
+				<div className='flex flex-row justify-between mt-2'>
 					<Link
 						href="/forgot-password">
 						Şifremi Unuttum
