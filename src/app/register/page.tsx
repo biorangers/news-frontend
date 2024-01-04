@@ -4,7 +4,8 @@ import React, { FormEvent, useState } from 'react';
 import axios from 'axios';
 import { Button, Card, Input, Link, Select, SelectItem } from '@nextui-org/react';
 
-const Login = () => {
+const Register = () => {
+	const [buttonC, setButtonC] = useState('primary') as any
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const data = new FormData(e.target as HTMLFormElement);
@@ -25,9 +26,11 @@ const Login = () => {
 		switch (res.status) {
 			case 200:
 				console.log('Başarılı')
+				setButtonC('success')
 				break;
 			case 400:
 				console.log('Başarısız')
+				setButtonC('error')
 				break;
 			default:
 				break;
@@ -98,7 +101,7 @@ const Login = () => {
 						type="submit"
 						variant='shadow'
 						className="w-full py-2"
-						color='success'
+						color={buttonC}
 					>
 						Kaydol
 					</Button>
@@ -109,8 +112,8 @@ const Login = () => {
 						href="/forgot-password">
 						Şifremi Unuttum
 					</Link>
-					<Link href="/register">
-						Hesabım Yok
+					<Link href="/login">
+						Hesabım Var
 					</Link>
 				</div>
 			</Card>
@@ -118,4 +121,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;
