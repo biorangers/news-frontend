@@ -51,7 +51,7 @@ export default function NewsEditor({ html, news, setNews }: any) {
 				</div>
 			</Toolbar>
 			<Editable
-				className='border border-primary-300 p-2 border-solid rounded-md prose max-w-[900px] prose-stone dark:prose-invert text-neutral-300'
+				className='border border-primary-300 p-2 border-solid rounded-md prose min-w-[900px] prose-stone dark:prose-invert text-neutral-300'
 				renderElement={renderElement}
 				renderLeaf={renderLeaf}
 				placeholder="Enter some rich text…"
