@@ -1,6 +1,6 @@
 "use client"
 
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import {
 	Button,
 	Card,
@@ -14,20 +14,32 @@ import { BsGraphUp } from "react-icons/bs";
 import NewsTable from "@/components/dashboard/NewsTable";
 
 import { useRouter } from "next/navigation";
+import EditorTable from "@/components/dashboard/EditorTable";
+import AuthorTable from "@/components/dashboard/AuthorTable";
 
-export default function PanelPage({ children }: any) {
-
+export default function PanelPage() {
 
 	const userInfo = {
-		editorId: 1,
-		roleId: 1,
-		userId: 13,
-		userName: "Emily",
-		userSurname: "Smith",
-		editorBio: "Hello everyone! I am a new editor here.",
-		userEmail: "emily@example.com",
-		userRegistrationDate: "2023-02-20T00:00:00",
-	};
+		"authorId": 2,
+		"userId": 15,
+		"userName": "Sophia",
+		"userSurname": "Brown",
+		"authorBio": "Hello everyone! I am a new writer here.",
+		"userEmail": "sophia@example.com",
+		"userRegistrationDate": "2023-04-05T00:00:00"
+	}
+	const [news, setNews] = useState([]);
+	const fetchData = async () => {
+		const res = await fetch(`/api/News/GetNewsByAuthorId/1, 2`)
+		const data = await res.json()
+		setNews(data)
+	}
+
+	useEffect(() => {
+		fetchData()
+	}, [])
+
+
 
 	return (
 		<div className="grid grid-cols-5">
@@ -73,21 +85,10 @@ export default function PanelPage({ children }: any) {
 			</aside>
 
 			<main className="col-span-4">
-				<Navbar
-				>
-					<NavbarContent>
-						<Input
-							placeholder="Search..."
-							width="200px"
-						/>
-						<Button>Search</Button>
-					</NavbarContent>
-					<NavbarContent>
-						<Button>Logout</Button>
-					</NavbarContent>
-				</Navbar>
-				<div className="p-4">{children}</div>
-				<NewsTable />
+				<div className="flex flex-col items-center justify-center gap-2 mt-4 p-4">
+					<AuthorTable news={news} />
+				</div>
+
 			</main>
 		</div>
 	);
