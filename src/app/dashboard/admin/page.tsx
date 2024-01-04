@@ -1,39 +1,35 @@
 "use client"
 
-import React, { use, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Button,
 	Card,
-	Input,
-	Link,
-	Navbar,
-	NavbarContent,
 } from "@nextui-org/react";
 import { FaFileAlt, FaUser } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
-import NewsTable from "@/components/dashboard/NewsTable";
 
 import { useRouter } from "next/navigation";
+import AdminTable from "@/components/dashboard/AdminTable";
 
-export default function PanelPage({ children }: any) {
+export default function PanelPage() {
+	const [users, setUsers] = useState([]);
+	const fetchData = async () => {
+		const res = await fetch('/api/User')
+		const data = await res.json()
+		setUsers(data)
+	}
 
-	const router = useRouter();
 	useEffect(() => {
-		const token = localStorage.getItem("token");
-		if (!token) {
-			router.push("/login");
-		}
-	}, [router]);
+		fetchData()
+	}, [])
 	const userInfo = {
-		editorId: 1,
-		roleId: 1,
-		userId: 13,
-		userName: "Emily",
-		userSurname: "Smith",
-		editorBio: "Hello everyone! I am a new editor here.",
-		userEmail: "emily@example.com",
-		userRegistrationDate: "2023-02-20T00:00:00",
-	};
+		"adminId": 1,
+		"userId": 14,
+		"userName": "Michael",
+		"userSurname": "Johnson",
+		"userEmail": "michael@example.com",
+		"userRegistrationDate": "2023-03-10T00:00:00"
+	}
 
 	return (
 		<div className="grid grid-cols-5">
@@ -42,9 +38,6 @@ export default function PanelPage({ children }: any) {
 					<div className="flex flex-col items-center justify-center gap-2">
 						<div className="flex flex-col items-center justify-center">
 							<span className="text-2xl font-bold mt-2">HABERTO</span>
-							<span className="text-sm font-medium text-neutral-500">
-								Dashboard Template
-							</span>
 						</div>
 					</div>
 					<div className="flex flex-col items-center justify-center gap-2 mt-4">
@@ -79,21 +72,10 @@ export default function PanelPage({ children }: any) {
 			</aside>
 
 			<main className="col-span-4">
-				<Navbar
-				>
-					<NavbarContent>
-						<Input
-							placeholder="Search..."
-							width="200px"
-						/>
-						<Button>Search</Button>
-					</NavbarContent>
-					<NavbarContent>
-						<Button>Logout</Button>
-					</NavbarContent>
-				</Navbar>
-				<div className="p-4">{children}</div>
-				<NewsTable />
+				<div className="flex flex-col items-center justify-center gap-2 mt-4 p-4">
+					<AdminTable users={users} />
+				</div>
+
 			</main>
 		</div>
 	);
